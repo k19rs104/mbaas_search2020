@@ -15,11 +15,10 @@
     const db = "SearchTest";
     // テスト用データを用意
     const init_data = [
-      {name: "blue eyes white dragon", level: 8, attack: 3000, defence: 2500},
-      {name: "dark magician", level: 7, attack: 2500, defence: 2100},
-      {name: "jacks knight", level: 5, attack: 1900, defence: 1000},
-      {name: "queens knight", level: 4, attack: 1500, defence: 1600},
-      {name: "kings knight", level: 4, attack: 1600, defence: 1400},
+      {name: "Xmas", level: 20201225},
+      {name: "deadline", level: 20210106},
+      {name: "birthday", level: 20010319},
+      {name: "sigoto osame", level: 20201229},
     ];
 
     $(function() {
@@ -32,8 +31,6 @@
             newRecord
             .set("name", init_data[i].name)
             .set("level", init_data[i].level)
-            .set("attack", init_data[i].attack)
-            .set("defence", init_data[i].defence)
             .save();
             // bad busy loop...
             let startMsec = new Date();
@@ -56,14 +53,12 @@
 
     function showResults(results) {
       // テーブルのヘッダを生成
-      let msg="<table><tr><th>name</th><th>Lvl</th><th>attack</th><th>defence</th></tr>";
+      let msg="<table><tr><th>yotei</th><th>date</th></tr>";
       for(let i=0; i<results.length; i++) {
         // 各データを収めた表の列を生成
         msg += "<tr>";
         msg += "<td>" + results[i].name + "</td>";
         msg += "<td class='num'>" + results[i].level + "</td>";
-        msg += "<td class='num'>" + results[i].attack + "</td>";
-        msg += "<td class='num'>" + results[i].defence + "</td>";
         msg += "</tr>";
       }
       // テーブルのテイラを生成
@@ -117,19 +112,19 @@
   <h1>mBaaS search</h1>
   <div>
     <label for="name">name:</label>
-    <input id="name" type="text" placeholder="monster name">
+    <input id="name" type="text" placeholder="name">
   </div>
   <div>
-    <label for="level">level:</label>
-    <input id="level" type="number" placeholder="monster level">
+    <label for="level">date:</label>
+    <input id="level" type="number" placeholder="yyyymmdd" value="20200101">
   </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
     <button class="btn" onclick="searchName()">Name</button>
     <br>
-    <button class="btn" onclick="searchLevelLT()">Level &lt</button>
-    <button class="btn" onclick="searchLevel()">Level</button>
-    <button class="btn" onclick="searchLevelGT()">Level &gt</button>
+    <button class="btn" onclick="searchLevelLT()">date &lt</button>
+    <button class="btn" onclick="searchLevel()">date</button>
+    <button class="btn" onclick="searchLevelGT()">date &gt</button>
   </div>
   <div id="message">initializing...</div>
 </body>
